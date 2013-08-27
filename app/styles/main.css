@@ -1,0 +1,10 @@
+body {
+    background: #fafafa;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #333;
+}
+
+#carve-container {
+    width: 100%;
+    min-height: 400px;
+}
