@@ -10,25 +10,25 @@ require.config({
         underscore: '../bower_components/underscore/underscore'
     },
     shim : {
-    	'bootstrap' : {
-    			deps:['jquery'],
-    			exports: '$'
+    	"bootstrap" : {
+    			"deps":['jquery'],
+    			"exports": '$'
+    	},
+    	"underscore" : {
+    		"exports": '_'
     	},
     	"carve" : {
-    	 "deps" : ["underscore","science"],
+    	 "deps" : ['underscore', 'science'],
     	 "exports" : "carve"
     	},
     	"filter" : {
     		"deps" : ['crossfilter'],
     		"exports" : "filter"
-    	},
-    	'underscore' : {
-    		exports: '_'
     	}
     }
 });
 
-require(['app', 'jquery', 'bootstrap', 'crossfilter'], function (app, $) {
+require(['app', 'jquery', 'underscore','bootstrap', 'crossfilter'], function (app, $, _) {
     'use strict';
     
     app.initialize( app.start );
