@@ -28,7 +28,7 @@ require.config({
     }
 });
 
-require(['app', 'jquery', 'underscore','bootstrap', 'crossfilter'], function (app, $, _) {
+require(['app', 'jquery', 'underscore', 'bootstrap', 'crossfilter'], function (app, $, _) {
     'use strict';
     
     app.initialize( app.start );

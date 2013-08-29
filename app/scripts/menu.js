@@ -6,6 +6,10 @@ define([], function () {
 
 /* widget creation */
 
+function setupSideMenu() {
+  
+}
+
 
 /* widget event handling */
     
@@ -17,6 +21,7 @@ function setupEvents() {
     	initialize: function( ) {
             deferral = new $.Deferred();
 
+            setupSideMenu();
             setupEvents();
             return deferral.promise();
         },
