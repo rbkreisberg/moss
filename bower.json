@@ -9,7 +9,7 @@
     "crossfilter": "~1.2.0",
     "queue-async": "~1.0.4",
     "d3": "~3.3.1",
-    "science": "github.com/jasondavies/science.js.git#1.9.1",
+    "science": "git://github.com/jasondavies/science.js.git#1.9.1",
     "underscore": "~1.5.1"
   },
   "devDependencies": {}
