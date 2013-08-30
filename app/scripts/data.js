@@ -6,17 +6,26 @@ define(['queue'], function () {
 
 	function getClinicalData (deferral) {
 
-		d3.tsv('data/samples.tsv')
+		d3.tsv('data/samples2.tsv')
 		.row(function(d) {
-			d['N:CLIN:Gestational_Age_at_Delivery'] = +d['N:CLIN:Gestational_Age_at_Delivery'];
-			d['C:QCTL:PL_VERSION'] = +d['C:QCTL:PL_VERSION'];
+			var ignoreKeys = ['label']
+			var values = _.omit.apply(this, d, ignoreKeys);
+			var firstVal = values[0];
+			if (!isNaN(parseFloat(firstVal)) && isFinite(firstVal) ) values =_.map(values, function(val) { return +val;});
+			d = _.extend(d, values);
 			return d;
 		})
 		.get(function(err, rows){
 
+			var features = _.pluck(rows ,'label');
+			var ignoreKeys = ['label']
+			var table = _.map(_.without.apply(_, [Object.keys(rows[0])].concat(ignoreKeys)), function(sampleID) {
+				return _.extend({'id': sampleID}, _.object(features, _.pluck(rows, sampleID)));
+			});
+
 		/* data cleaning, sorting, and model building*/
 
-		deferral.resolve(rows);
+		deferral.resolve(table);
 		});
 
 	}

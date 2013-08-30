@@ -4,7 +4,7 @@ define(['carve', 'filter', 'underscore'], function (carveVis, filter, _) {
 
 	var carve;
 
-	var labels = {'x' : 'C:ADMX:Admix_80_Percent', 'y' : 'N:CLIN:Gestational_Age_at_Delivery', list : [], class: 'C:ADMX:Admix_14_max'},
+	var labels = {'x' : 'B:CLIN:Chorioamnionitis_during_delivery:M::::', 'y' : 'B:MRGE:Uterine_Related:NB::::', list : [], class: 'N:CLIN:TermCategory:NB::::'},
 	insistCategoricalValues = { 'x':  [], 'y' : [] };
 	/* Vis object creation */
 
