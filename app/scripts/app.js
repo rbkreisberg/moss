@@ -4,27 +4,27 @@ define(['data', 'menu', 'vis'], function (data, menu, vis) {
 
     
     var Application = {
-    	initialize: function (callback) {
+        initialize: function (callback) {
 
-    		var carve_container = "#carve-container";
+            var carveContainer = '#carve-container';
 
-    		var data_init = data.retrieve();
+            var dataInit = data.retrieve();
 
-    		data_init.done( [
-    			function (data) { menu.initialize(); }, 
-    			function (data) { 
-    				vis.initialize(carve_container)
-    					.data(data)
-    					.draw();
-    				}
-    			] );
-    			
-    		data_init.then( callback );
+            dataInit.done( [
+                function () { menu.initialize(); },
+                function (data) {
+                    vis.initialize(carveContainer)
+                        .data(data)
+                        .draw();
+                }
+            ] );
+                
+            dataInit.then( callback );
 
-    	},
-    	start: function() {
-    		console.log('app started!');
-    	}
+        },
+        start: function() {
+            console.log('app started!');
+        }
     };
     return Application;
 });

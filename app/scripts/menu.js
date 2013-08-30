@@ -6,28 +6,27 @@ define([], function () {
 
 /* widget creation */
 
-function setupSideMenu() {
-  
-}
-
+    function setupSideMenu() {
+      
+    }
 
 /* widget event handling */
     
-function setupEvents() {
-    deferral.resolve();
-}
+    function setupEvents() {
+        deferral.resolve();
+    }
 
     var Menu = {
-    	initialize: function( ) {
+        initialize: function( ) {
             deferral = new $.Deferred();
 
             setupSideMenu();
             setupEvents();
             return deferral.promise();
         },
-    	start: function() {
+        start: function() {
 
-    	}
+        }
     };
     return Menu;
 });
