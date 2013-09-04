@@ -1,101 +1,110 @@
 <!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Moss</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width">
-        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-        <!-- build:css styles/main.css -->
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7">
+  <![endif]-->
+  <!--[if IE 7]>
+  <html class="no-js lt-ie9 lt-ie8">
+    <![endif]-->
+    <!--[if IE 8]>
+    <html class="no-js lt-ie9">
+      <![endif]-->
+      <!--[if gt IE 8]>
+      <!-->
+<html class="no-js">
+  <!--<![endif]-->      
+<head>
+  <meta charset="utf-8">      
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">      
+  <title>Moss</title>
+  <meta name="description" content="">      
+  <meta name="viewport" content="width=device-width">      
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->      
+  <!-- build:css styles/main.css -->      
 
-        <link rel="stylesheet" href="styles/bootstrap.css">
-        <link rel="stylesheet" href="styles/bootstrap-theme.css">
-        <link rel="stylesheet" href="bower_components/jquery-ui/themes/ui-lightness/jquery-ui.css"
-        <link rel="stylesheet" href="bower_components/carve/carve.css">
-        <link rel="stylesheet" href="styles/moss.css">
-        <!-- endbuild -->
-        <!-- build:js scripts/vendor.js -->
-        <script src="bower_components/d3/d3.js"></script>
-        <script src="bower_components/modernizr/modernizr.js"></script>
-        <!-- endbuild -->
-    </head>
-    <body>
-         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-             <div class="container">
-                 <a class="navbar-brand">Moss</a>
-                 <form class="navbar-form navbar-left" role="search">
-                     <div class="form-group">
-                         <input type="text" placeholder="Label" class="form-control" id="highlight" />         
-                     </div>
-                 </form>
-                 <button id="helpButton" type="button" class="btn btn-small btn-info navbar-btn navbar-right" data-toggle="modal" href="#helpPanel">
-                     <span class="glyphicon glyphicon-question-sign glyphicon-white"></span>
-                 </button>
-             </div>
-         </nav>
-         <div id="helpPanel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="helpPanelLabel" aria-hidden="true">
-             <div class="modal-dialog">
-                 <div class="modal-content">
-                     <div class="modal-header">
-                         <a type="button" class="close" data-dismiss="modal" aria-hidden="true" href="#"> <i class="glyphicon glyphicon-remove"></i>
-                         </a>
-                         <h3 id="helpPanelLabel">How to use the graph</h3>
-                     </div>
-                     <div class="modal-body">
-                         Drag : Brush
-                         <br>         
-                         Shift + Drag : Pan the plot
-                         <br>         
-                         Mousewheel : Zoom
-                         <br>         
-                         Click (plot) : Remove brush
-                         <br></div>
-                 </div>
-             </div>
-         </div>
-          <div class="container">
-            <div class="row">
-              <div class="col-md-8">
-                <div id="carve-container"></div>
-              </div>
-              <div class="col-md-4">
-                <div class="btn-group btn-group-justified">
-                  <a type="button" id="x_feature_select" class="btn btn-default">X</a>
-                  <a type="button" id="y_feature_select" class="btn btn-default">Y</a>
-                  <a type="button" id="color_feature_select" class="btn btn-default">Color</a>
-                </div>
-              <div class="input-group">
-                <span class="input-group-addon">
-                  <span class="glyphicon glyphicon-search"></span>
-                </span>
-                <div class="ui-widget">
-                  <input type="search" id="feature_search" class="ui-autocomplete-input form-control input" placeholder="Feature..."></div>
-              </div>
-              <div id="feature_list"></div>
-              <div id="feature_list_hidden"></div>
-            </div>
-          </div>
-          </div>
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
+  <link rel="stylesheet" href="styles/bootstrap.css">      
+  <link rel="stylesheet" href="styles/bootstrap-theme.css">      
+  <link rel="stylesheet" href="bower_components/jquery-ui/themes/ui-lightness/jquery-ui.css">
+  <link rel="stylesheet" href="bower_components/carve/carve.css">      
+  <link rel="stylesheet" href="styles/moss.css">      
+  <!-- endbuild -->      
+  <!-- build:js scripts/vendor.js -->      
+  <script src="bower_components/d3/d3.js"></script>
+  <script src="bower_components/modernizr/modernizr.js"></script>
+  <!-- endbuild --> 
+</head>
+<body>
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <a class="navbar-brand" href="#">Moss</a>
+      <button id="helpButton" type="button" class="btn btn-small btn-info navbar-btn navbar-right" data-toggle="modal" href="#helpPanel">
+        <span class="glyphicon glyphicon-question-sign glyphicon-white"></span>
+      </button>
+    </div>
+  </nav>
+  <div id="helpPanel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="helpPanelLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <a type="button" class="close" data-dismiss="modal" aria-hidden="true" href="#"> <i class="glyphicon glyphicon-remove"></i>
+          </a>
+          <h3 id="helpPanelLabel">How to use the graph</h3>
+        </div>
+        <div class="modal-body">
+          Drag : Brush
+          <br>      
+          Shift + Drag : Pan the plot
+          <br>      
+          Mousewheel : Zoom
+          <br>      
+          Click (plot) : Remove brush
+          <br></div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <div id="carve-container"></div>
+      </div>
+      <div class="col-md-4">
+        <div class="btn-group btn-group-justified">
+          <a type="button" id="x_feature_select" class="btn btn-default">X</a>
+          <a type="button" id="y_feature_select" class="btn btn-default">Y</a>
+          <a type="button" id="color_feature_select" class="btn btn-default">Color</a>
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-search"></span>
+          </span>
+          <div class="ui-widget">
+            <input type="search" id="feature_search" class="ui-autocomplete-input form-control input" placeholder="Feature..."></div>
+        </div>
+        <div id="feature_list"></div>
+        <div id="feature_list_hidden"></div>
+      </div>
+    </div>
+  </div>
+  <!--[if lt IE 7]>      
+  <p class="browsehappy">
+    You are using an <strong>outdated</strong>
+    browser. Please
+    <a href="http://browsehappy.com/">upgrade your browser</a>
+    to improve your experience.
+  </p>
+  <![endif]-->      
 
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-        <script>
-            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-            e.src='//www.google-analytics.com/analytics.js';
-            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-            ga('create','UA-XXXXX-X');ga('send','pageview');
-        </script>
+  <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->      
+  <script>
+      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+      e.src='//www.google-analytics.com/analytics.js';
+      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+      ga('create','UA-XXXXX-X');ga('send','pageview');
+  </script>
 
-        <!-- build:js scripts/main.js -->
-        <script data-main="scripts/main" src="bower_components/requirejs/require.js"></script>
-        <!-- endbuild -->
+  <!-- build:js scripts/main.js -->      
+  <script data-main="scripts/main" src="bower_components/requirejs/require.js"></script>
+  <!-- endbuild --> 
 </body>
 </html>

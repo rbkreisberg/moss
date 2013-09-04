@@ -1,5 +1,5 @@
 body {
-    background: #fafafa;
+    background: #777777;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #333;
     padding-top: 70px;
@@ -8,6 +8,11 @@ body {
 #carve-container {
     width: 100%;
     height: 100%;
+}
+
+#carve-container svg {
+	background: #ffffff;
+	padding:  20px 0 0 20px;
 }
 
 .ui-autocomplete {
@@ -32,11 +37,8 @@ body {
   width: 1px;
 }
 
-#feature_list_hidden {
-	visibility: hidden;
-}
-
-#feature_list {
+#feature_search {
+	font-size: 11px;
 }
 
 #feature_list ul {

@@ -47,7 +47,7 @@ define(['mediator-js'], function (Mediator) {
     (function(){
         
         $featureSearch.data( "ui-autocomplete" )._renderItem = function( ul, item ) {
-          return $( "<li class=\"feature\">" ).append( "<a class=\"glyphicon glyphicon-list\">  " + item.label + "</a>" ).appendTo( ul );
+          return $( "<li class=\"feature\">" ).append( "<a>  " + item.label + "</a>" ).appendTo( ul );
         };
 
        var originalCloseMethod = $featureSearch.data("ui-autocomplete").close;
