@@ -8,7 +8,8 @@ require.config({
         bootstrap: 'vendor/bootstrap',
         science: '../bower_components/science/science.v1',
         filter: '../bower_components/carve/filter',
-        underscore: '../bower_components/underscore/underscore'
+        underscore: '../bower_components/underscore/underscore',
+        "mediator-js": '../bower_components/mediator-js/lib/mediator'
     },
     shim : {
     	"bootstrap" : {
@@ -33,7 +34,7 @@ require.config({
     }
 });
 
-require(['app', 'underscore', 'jquery', ,'jqueryUI','bootstrap', 'crossfilter'], function (app, _, $) {
+require(['app', 'underscore', 'jquery', 'jqueryUI','bootstrap', 'crossfilter' ], function (app, _, $) {
     'use strict';
     
     app.initialize( app.start );

@@ -1,5 +1,5 @@
 
-define(['carve', 'filter', 'underscore'], function (carveVis, filter, _) {
+define(['carve', 'filter', 'mediator-js', 'underscore'], function (carveVis, filter, Mediator, _) {
 	'use strict';
 
 	var carve;
@@ -26,7 +26,13 @@ define(['carve', 'filter', 'underscore'], function (carveVis, filter, _) {
 		.axisInsistCategoricalValues(insistCategoricalValues)
 		.axisValueDictionary( { 'x' : { 'true' : 'true'}})
 		.data(data);
+	}
 
+	function changeFeatures() {
+		carve
+			.axisLabel(labels)
+			.axisKey(labels)
+			.colorBy( { label: labels.class, list: _.uniq(_.pluck(carve.data(), labels.class) ) } );
 	}
 
 	/* event handlers */
@@ -35,9 +41,21 @@ define(['carve', 'filter', 'underscore'], function (carveVis, filter, _) {
 		carve.render();
 	}
 
+
+	function subscribeEvents() {
+		Mediator.subscribe("application:feature:selected", function (msg) {
+			if (msg.axis) {
+				labels[msg.axis] = msg.label;
+				changeFeatures();
+				drawCarve()
+			}
+		});
+	}
+
 	var Vis = {
 		initialize: function( container ) {
 			setupCarveObject(container);
+			subscribeEvents();
 			return this;
 		},
 		data: function(data) {

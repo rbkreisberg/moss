@@ -1,5 +1,5 @@
 /*global define */
-define(['data', 'menu', 'vis'], function (data, menu, vis) {
+define(['data', 'menu', 'vis','mediator-js'], function (data, menu, vis, Mediator) {
     'use strict';
 
     
