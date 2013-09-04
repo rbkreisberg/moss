@@ -16,16 +16,21 @@ define(['queue'], function () {
 			return d;
 		})
 		.get(function(err, rows){
-
-			var features = _.pluck(rows ,'label');
-			var ignoreKeys = ['label']
-			var table = _.map(_.without.apply(_, [Object.keys(rows[0])].concat(ignoreKeys)), function(sampleID) {
-				return _.extend({'id': sampleID}, _.object(features, _.pluck(rows, sampleID)));
-			});
+			var features, ignoreKeys, table, samples = [];
+			if (rows && rows.length) {
+				features = _(_.pluck(rows, 'label')).map(function(val) { var fields = val.split(":"); return fields[2] + ":" + fields[7];});
+				ignoreKeys = ['label'];
+				samples = Object.keys(rows[0]);
+				table = _.map(_.without.apply(_, [samples].concat(ignoreKeys)), function(sampleID) {
+					return _.extend({
+						'id': sampleID
+					}, _.object(features, _.pluck(rows, sampleID)));
+				});
+			}
 
 		/* data cleaning, sorting, and model building*/
 
-		deferral.resolve(table);
+		deferral.resolve({features: features, samples: samples, data: table});
 		});
 
 	}
