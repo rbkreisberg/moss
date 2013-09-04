@@ -4,6 +4,7 @@ require.config({
     	crossfilter: '../bower_components/crossfilter/crossfilter',
     	queue: '../bower_components/queue-async/queue',
         jquery: '../bower_components/jquery/jquery',
+        jqueryUI: '../bower_components/jquery-ui/ui/jquery-ui',
         bootstrap: 'vendor/bootstrap',
         science: '../bower_components/science/science.v1',
         filter: '../bower_components/carve/filter',
@@ -12,8 +13,12 @@ require.config({
     shim : {
     	"bootstrap" : {
     			"deps":['jquery'],
-    			"exports": '$'
+    			"exports": 'bootstrap'
     	},
+        "jqueryUI" : {
+                "deps": ['jquery'],
+                "exports": '$'
+        },
     	"underscore" : {
     		"exports": '_'
     	},
@@ -28,7 +33,7 @@ require.config({
     }
 });
 
-require(['app', 'jquery', 'underscore', 'bootstrap', 'crossfilter'], function (app, $, _) {
+require(['app', 'underscore', 'jquery', ,'jqueryUI','bootstrap', 'crossfilter'], function (app, _, $) {
     'use strict';
     
     app.initialize( app.start );

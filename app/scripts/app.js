@@ -11,11 +11,16 @@ define(['data', 'menu', 'vis'], function (data, menu, vis) {
             var dataInit = data.retrieve();
 
             dataInit.done( [
-                function () { menu.initialize(); },
-                function (data) {
-                    vis.initialize(carveContainer)
-                        .data(data)
+                function () { 
+                    menu.initialize(); 
+                },
+                function (featureMatrix) {
+                	if (featureMatrix.data && featureMatrix.data.length) {
+                         menu.populate(featureMatrix);
+                    return vis.initialize(carveContainer)
+                        .data(featureMatrix.data)
                         .draw();
+                    }
                 }
             ] );
                 
