@@ -63,22 +63,23 @@
                 <div id="carve-container"></div>
               </div>
               <div class="col-md-4">
-                <div class="input-group">
-                  <div class="ui-widget">
-                    <input type="search" id="feature_search" class="ui-autocomplete-input form-control input-sm" placeholder="Feature...">
-                  </div>
-                  <span class="input-group-btn">
-                    <button type-"button" class="btn btn-sm btn-default">
-                      <span class="glyphicon glyphicon-search"></span>
-                    </button>
-                  </span>
+                <div class="btn-group btn-group-justified">
+                  <a type="button" id="x_feature_select" class="btn btn-default">X</a>
+                  <a type="button" id="y_feature_select" class="btn btn-default">Y</a>
+                  <a type="button" id="color_feature_select" class="btn btn-default">Color</a>
                 </div>
-                <div id="feature_list"></div>
-                <div id="feature_list_hidden"></div>
+              <div class="input-group">
+                <span class="input-group-addon">
+                  <span class="glyphicon glyphicon-search"></span>
+                </span>
+                <div class="ui-widget">
+                  <input type="search" id="feature_search" class="ui-autocomplete-input form-control input" placeholder="Feature..."></div>
               </div>
+              <div id="feature_list"></div>
+              <div id="feature_list_hidden"></div>
             </div>
           </div>
-
+          </div>
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
