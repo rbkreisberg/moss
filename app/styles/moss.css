@@ -7,7 +7,7 @@ body {
 
 #carve-container {
     width: 100%;
-    height: 100%;
+    height: 555px;
 }
 
 #carve-container svg {
@@ -16,13 +16,19 @@ body {
 }
 
 .ui-autocomplete {
-  width:100%;
+  max-width:280px;
   max-height: 450px;
   font-size:11px;
   background-color: white;
   background-image: none;
   overflow-y: scroll;
+  overflow-x:hidden;
 }
+
+.ui-autocomplete-category {
+	font-weight: bold;
+}
+
 .ui-helper-hidden {
   display: none;
 }

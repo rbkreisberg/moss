@@ -29,10 +29,10 @@ define(['mediator-js'], function (Mediator) {
     }
 
 /* populate widgets with data */
-    function populateAutocomplete( list ) {      
+    function populateAutocomplete( feature_list ) {      
 
         var $featureSearch = $("#feature_search").autocomplete({
-                                source : list,
+                                source : matchRequest,
                                 minLength : 2,
                                 delay : 200,
                                 position : { my: "left top", at: "left bottom", of: "#feature_list", collision: "none"},
@@ -44,21 +44,49 @@ define(['mediator-js'], function (Mediator) {
         });
         
 
-    (function(){
-        
-        $featureSearch.data( "ui-autocomplete" )._renderItem = function( ul, item ) {
-          return $( "<li class=\"feature\">" ).append( "<a>  " + item.label + "</a>" ).appendTo( ul );
-        };
+    function matchRequest(request, response) {
+        function hasMatch(s) {
+            return s.toLowerCase().indexOf(request.term.toLowerCase())!==-1;
+        }
+        var i, l, obj, matches = [];
 
-       var originalCloseMethod = $featureSearch.data("ui-autocomplete").close;
-        $featureSearch.data("ui-autocomplete").close = function(event) {
-            if (!selected){
-                //close requested by someone else, let it pass
-                originalCloseMethod.apply( this, arguments );
+        if (request.term==="") {
+            response([]);
+            return;
+        }
+
+        for  (i = 0, l = feature_list.length; i<l; i++) {
+            obj = feature_list[i];
+            if (hasMatch(obj.label) || hasMatch(obj.category)) {
+                matches.push(obj);
             }
-            // selected = false;
-        };
-    })();
+        }
+        response(matches);
+    }
+
+        (function() {
+
+            $featureSearch.data("ui-autocomplete")._renderMenu = function(ul, items) {
+                var that = this;
+                var currentCategory = "";
+                _.each(items, function(item) {
+                    if (item.category != currentCategory) {
+                        $('<li/>').addClass('ui-autocomplete-category').html(item.category).appendTo(ul);
+                        currentCategory = item.category;
+                    }
+                    that._renderItemData(ul, item);
+                });
+            };
+
+            var originalCloseMethod = $featureSearch.data("ui-autocomplete").close;
+            $featureSearch.data("ui-autocomplete").close = function(event) {
+                if (!selected) {
+                    //close requested by someone else, let it pass
+                    originalCloseMethod.apply(this, arguments);
+                }
+                // selected = false;
+            };
+        })();
     }
 
     var Menu = {
