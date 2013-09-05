@@ -8,11 +8,11 @@ define(['queue'], function () {
 
 		d3.tsv('data/samples2.tsv')
 		.row(function(d) {
-			var ignoreKeys = ['label']
-			var values = _.omit.apply(this, d, ignoreKeys);
-			var firstVal = values[0];
-			if (!isNaN(parseFloat(firstVal)) && isFinite(firstVal) ) values =_.map(values, function(val) { return +val;});
-			d = _.extend(d, values);
+			var ignoreKeys = ['label'];
+			for (var k in d) {
+				if (k in ignoreKeys) continue;
+				if (!isNaN(parseFloat(d[k])) && isFinite(d[k]) ) d[k] = +d[k];
+			}
 			return d;
 		})
 		.get(function(err, rows){
