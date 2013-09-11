@@ -3,8 +3,19 @@ define(['carve', 'filter', 'mediator-js', 'underscore'], function (carveVis, fil
 	'use strict';
 
 	var carve;
+	var colors = { 'Binary' : [
+						'#84ACBA',
+						'#FD8F42',
+					],
+					'TermCategory' : [
+						'#D7191C',
+						'#FDAE61',
+						'#ABD9E9',
+						'#2C7BB6'
+					]
+					};
 
-	var labels = {'x' : 'Chorioamnionitis_during_delivery:', 'y' : 'Uterine_Related:', list : [], class: 'TermCategory:'},
+	var labels = {'x' : 'Chorioamnionitis_during_delivery:', 'y' : 'Uterine_Related:', list : [], class: 'Preterm:'},
 	insistCategoricalValues = { 'x':  [], 'y' : [] };
 	/* Vis object creation */
 
@@ -15,6 +26,7 @@ define(['carve', 'filter', 'mediator-js', 'underscore'], function (carveVis, fil
 				top: 10, left: 10, bottom: 30, right: 40
 			}
 		})(plotContainer);
+		colors['default'] = carve.colorBy()['colors'];
 	}
 
 	function populateCarve( data ) {
@@ -22,17 +34,25 @@ define(['carve', 'filter', 'mediator-js', 'underscore'], function (carveVis, fil
 		.clear(true)
 		.axisLabel(labels)
 		.axisKey(labels)
-		.colorBy( { label: labels.class, list: _.uniq(_.pluck(data, labels.class) ) } )
+		.colorBy( getColorByValues(data) )
 		.axisInsistCategoricalValues(insistCategoricalValues)
 		.axisValueDictionary( { 'x' : { 'true' : 'true'}})
 		.data(data);
+	}
+
+	function getColorByValues(data) {
+		var color_values = _.uniq(_.pluck(data, labels.class));
+		var color_palette = color_values.length === 2 ? colors['Binary'] : colors['default'];
+		if (labels.class.indexOf('TermCategory') >=0) color_palette = colors['TermCategory'];
+
+		return { label: labels.class, list: color_values, colors: color_palette }
 	}
 
 	function changeFeatures() {
 		carve
 			.axisLabel(labels)
 			.axisKey(labels)
-			.colorBy( { label: labels.class, list: _.uniq(_.pluck(carve.data(), labels.class) ) } );
+			.colorBy( getColorByValues(carve.data()) );
 	}
 
 	/* event handlers */
